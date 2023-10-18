@@ -236,6 +236,9 @@ theme.components = {
         textAlign: 'center',
         minWidth: 'max-content',
         margin: '.625rem auto',
+        '&:focus': {
+          borderWidth: '0.25rem',
+        },
       },
     },
   },
