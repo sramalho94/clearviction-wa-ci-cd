@@ -7,3 +7,8 @@
 main {
   height: 100%;
 }
+
+/* Increase border width on focus */
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-width: 0.25rem
+}
