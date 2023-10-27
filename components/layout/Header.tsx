@@ -105,7 +105,7 @@ export default function Header() {
                   size="small"
                   className="donate-btn"
                   sx={{
-                    whiteSpace: 'nowrap', bgcolor: '#72C850', py: 1, px: 4,
+                    whiteSpace: 'nowrap', bgcolor: '#72C850', py: 1, px: 4, '&:hover': { color: '#000000', bgcolor: '#72C850' },
                   }}
                 >
                   Donate
