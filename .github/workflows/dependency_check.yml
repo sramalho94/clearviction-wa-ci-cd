@@ -1,0 +1,64 @@
+name: Dependency Check
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  check_dependencies:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Check for Dependency Conflicts
+        run: npm audit
+
+      - name: Check for npm Warnings
+        run: npm audit
+
+      - name: Comment on PR with Issues
+        uses: actions/github-script@0.9.0
+        with:
+          script: |
+            const fs = require('fs');
+            const issues = fs.readFileSync('issues/issues-file.txt', 'utf-8');
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `PR has dependency issues:\n${issues}`,
+            })
+      - name: Check for Issues and Reject PR
+        id: check-issues
+        run: |
+          if [ -s issues/issues-file.txt ]; then
+            echo "Dependency issues found. Rejecting PR."
+            exit 1
+          fi
+          
+      - name: Set results as environment variable
+        run: |
+          echo "DEPENDENCY_ISSUES=true" >> "$GITHUB_ENV"
+        if: steps.check-issues.outcome == 'failure'
+        
+      - name: Set output parameter
+        id: set-output
+        run: echo "DEPENDENCY_ISSUES=true" >> "$GITHUB_ENV"
+        if: steps.check-issues.outcome == 'failure'
+        
+      - name: Set job summary
+        run: |
+          echo "Dependency issues found" >> $GITHUB_STEP_SUMMARY
+          echo "Rejecting the PR." >> $GITHUB_STEP_SUMMARY
+        if: steps.check-issues.outcome == 'failure'
