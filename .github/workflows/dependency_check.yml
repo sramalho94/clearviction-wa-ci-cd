@@ -26,10 +26,10 @@ jobs:
         run: |
           audit_result=$(npm audit --audit-level=moderate)
           echo "$audit_result" > issues/issues-file.txt
-          if [[ $audit_result == *"found 0 vulnerabilities"* ]]; then
-            echo "No vulnerabilities found."
+          if [[ $audit_result != *"found 0 vulnerabilities"* ]]; then
+            echo "Dependency issues found."
+            exit 1
           fi
-          exit 0
       
       
 
