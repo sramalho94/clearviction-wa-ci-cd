@@ -28,26 +28,16 @@ jobs:
           echo "$audit_result" > issues/issues-file.txt
 
   process_results:
-    needs: run_audit
     runs-on: ubuntu-latest
 
     steps:
       - name: Comment on PR with Issues
-        if: failure() # Only run this step if the previous job (run_audit) failed
-        uses: actions/github-script@0.9.0
-        with:
-          script: |
-            const fs = require('fs');
-            const issues = fs.readFileSync('issues/issues-file.txt', 'utf-8');
-            github.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: `PR has dependency issues:\n${issues}`,
-            }
-      - name: Check for Issues and Reject PR
-        if: failure() # Only run this step if the previous job (run_audit) failed
+        if: failure()
         run: |
-          if ! grep -q "found 0 vulnerabilities" issues/issues-file.txt; then
+          const fs = require('fs');
+          const issues = fs.readFileSync('issues/issues-file.txt', 'utf-8');
+          if (issues.trim().length > 0) {
             echo "Dependency issues found. Rejecting PR."
             exit 1
+          }
+        shell: bash
