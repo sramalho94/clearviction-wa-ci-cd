@@ -38,3 +38,9 @@ jobs:
             })
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Check for Issues and Reject PR
+        run: |
+            if ! grep -q "found 0 vulnerabilities" issues/issues-file.txt; then
+              echo "Dependency issues found. Rejecting PR."
+              exit 1
