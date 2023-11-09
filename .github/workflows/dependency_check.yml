@@ -25,14 +25,7 @@ jobs:
         id: audit
         run: |
           audit_result=$(npm audit --audit-level=moderate | true)
-          echo "$audit_result" > issues/issues-file.txt
-          if [[ $audit_result == *"found 0 vulnerabilities"* ]]; then
-            echo "No vulnerabilities found."
-          else
-            echo "Dependency issues found."
-            # You can add additional logic here to check for critical vulnerabilities.
-          fi
-      
+          echo "::set-output name=audit_result::$audit_result"
 
   process_results:
     runs-on: ubuntu-latest
@@ -42,12 +35,12 @@ jobs:
       - name: Comment on PR with Issues
         if: always()
         run: |
+          const core = require('@actions/core');
           const fs = require('fs');
           const issues = fs.readFileSync('issues/issues-file.txt', 'utf-8');
           if (issues.includes("found 0 vulnerabilities")) {
-            echo "No vulnerabilities found."
+            core.setOutput("audit_result", "No vulnerabilities found.");
           } else {
-            echo "Dependency issues found. Rejecting PR."
-            exit 1
+            core.setOutput("audit_result", "Dependency issues found.");
+            core.setFailed("Dependency issues found. Rejecting PR.");
           }
-        shell: bash
