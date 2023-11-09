@@ -33,11 +33,13 @@ jobs:
 
     steps:
       - name: Comment on PR with Issues
-        if: failure()
+        if: always()
         run: |
           const fs = require('fs');
           const issues = fs.readFileSync('issues/issues-file.txt', 'utf-8');
-          if (issues.trim().length > 0) {
+          if (issues.includes("found 0 vulnerabilities")) {
+            echo "No vulnerabilities found."
+          } else {
             echo "Dependency issues found. Rejecting PR."
             exit 1
           }
