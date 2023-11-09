@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  check_dependencies:
+  run_audit:
     runs-on: ubuntu-latest
 
     steps:
@@ -26,14 +26,14 @@ jobs:
         run: |
           audit_result=$(npm audit --audit-level=moderate)
           echo "$audit_result" > issues/issues-file.txt
-          if [[ $audit_result != *"found 0 vulnerabilities"* ]]; then
-            echo "Dependency issues found."
-            exit 1
-          fi
-      
-      
 
+  process_results:
+    needs: run_audit
+    runs-on: ubuntu-latest
+
+    steps:
       - name: Comment on PR with Issues
+        if: failure() # Only run this step if the previous job (run_audit) failed
         uses: actions/github-script@0.9.0
         with:
           script: |
@@ -44,18 +44,10 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               body: `PR has dependency issues:\n${issues}`,
-            })
-
+            }
       - name: Check for Issues and Reject PR
-        id: check-issues
+        if: failure() # Only run this step if the previous job (run_audit) failed
         run: |
           if ! grep -q "found 0 vulnerabilities" issues/issues-file.txt; then
             echo "Dependency issues found. Rejecting PR."
             exit 1
-          fi
-
-      - name: Set results as environment variable
-        run: |
-          if [ -s issues/issues-file.txt ]; then
-            echo "DEPENDENCY_ISSUES=true" >> "$GITHUB_ENV"
-          fi
