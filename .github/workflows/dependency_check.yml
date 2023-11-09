@@ -30,14 +30,17 @@ jobs:
           script: |
             const fs = require('fs');
             const issues = fs.readFileSync('issues/issues-file.txt', 'utf-8');
-            github.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: `PR has dependency issues:\n${issues}`,
-            })
+            if (!issues.includes("found 0 vulnerabilities")) {
+              github.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: `PR has dependency issues:\n${issues}`,
+              });
+            }
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
 
       - name: Check for Issues and Reject PR
         run: |
