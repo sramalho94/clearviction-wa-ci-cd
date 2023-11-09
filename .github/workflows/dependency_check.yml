@@ -25,18 +25,16 @@ jobs:
         run: npm audit > issues/issues-file.txt || true
 
       - name: Comment on PR with Issues
-        run: |
-          issues=$(cat issues/issues-file.txt)
-          if echo "$issues" | grep -q "found 0 vulnerabilities"; then
-            echo "No vulnerabilities found."
-          else
-            echo "Dependency issues found. Rejecting PR."
-            exit 1
-          fi
-      
-
-      - name: Set results as environment variable
-        run: |
-          if [ -s issues/issues-file.txt ]; then
-            echo "DEPENDENCY_ISSUES=true" >> "$GITHUB_ENV"
-          fi
+        uses: actions/github-script@0.9.0
+        with:
+          script: |
+            const fs = require('fs');
+            const issues = fs.readFileSync('issues/issues-file.txt', 'utf-8');
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `PR has dependency issues:\n${issues}`,
+            })
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
