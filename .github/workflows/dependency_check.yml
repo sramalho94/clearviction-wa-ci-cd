@@ -21,11 +21,8 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Check for Dependency Conflicts
-        run: npm audit
-
-      - name: Check for npm Warnings
-        run: npm audit
+      - name: Check for Dependency Issues
+        run: npm audit > issues/issues-file.txt
 
       - name: Comment on PR with Issues
         uses: actions/github-script@0.9.0
@@ -39,6 +36,7 @@ jobs:
               repo: context.repo.repo,
               body: `PR has dependency issues:\n${issues}`,
             })
+
       - name: Check for Issues and Reject PR
         id: check-issues
         run: |
@@ -46,19 +44,9 @@ jobs:
             echo "Dependency issues found. Rejecting PR."
             exit 1
           fi
-          
+
       - name: Set results as environment variable
         run: |
-          echo "DEPENDENCY_ISSUES=true" >> "$GITHUB_ENV"
-        if: steps.check-issues.outcome == 'failure'
-        
-      - name: Set output parameter
-        id: set-output
-        run: echo "DEPENDENCY_ISSUES=true" >> "$GITHUB_ENV"
-        if: steps.check-issues.outcome == 'failure'
-        
-      - name: Set job summary
-        run: |
-          echo "Dependency issues found" >> $GITHUB_STEP_SUMMARY
-          echo "Rejecting the PR." >> $GITHUB_STEP_SUMMARY
-        if: steps.check-issues.outcome == 'failure'
+          if [ -s issues/issues-file.txt ]; then
+            echo "DEPENDENCY_ISSUES=true" >> "$GITHUB_ENV"
+          fi
