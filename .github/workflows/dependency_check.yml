@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  run_audit:
+  check_dependencies:
     runs-on: ubuntu-latest
 
     steps:
@@ -22,25 +22,22 @@ jobs:
         run: npm install
 
       - name: Check for Dependency Issues
-        id: audit
-        run: |
-          audit_result=$(npm audit --audit-level=moderate | true)
-          echo "::set-output name=audit_result::$audit_result"
+        run: npm audit > issues/issues-file.txt || true
 
-  process_results:
-    runs-on: ubuntu-latest
-    needs: run_audit
-
-    steps:
       - name: Comment on PR with Issues
-        if: always()
         run: |
-          const core = require('@actions/core');
           const fs = require('fs');
           const issues = fs.readFileSync('issues/issues-file.txt', 'utf-8');
-          if (issues.includes("found 0 vulnerabilities")) {
-            core.setOutput("audit_result", "No vulnerabilities found.");
-          } else {
-            core.setOutput("audit_result", "Dependency issues found.");
-            core.setFailed("Dependency issues found. Rejecting PR.");
-          }
+          if echo "$issues" | grep -q "found 0 vulnerabilities"; then
+            echo "No vulnerabilities found."
+          else
+            echo "Dependency issues found. Rejecting PR."
+            exit 1
+          fi
+        shell: bash
+
+      - name: Set results as environment variable
+        run: |
+          if [ -s issues/issues-file.txt ]; then
+            echo "DEPENDENCY_ISSUES=true" >> "$GITHUB_ENV"
+          fi
