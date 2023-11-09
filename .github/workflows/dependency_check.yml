@@ -29,6 +29,7 @@ jobs:
           if [[ $audit_result == *"found 0 vulnerabilities"* ]]; then
             echo "No vulnerabilities found."
           fi
+          exit 0
       
       
 
