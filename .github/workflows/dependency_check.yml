@@ -24,11 +24,12 @@ jobs:
       - name: Check for Dependency Issues
         id: audit
         run: |
-          audit_result=$(npm audit)
+          audit_result=$(npm audit --audit-level=moderate)
           echo "$audit_result" > issues/issues-file.txt
           if [[ $audit_result == *"found 0 vulnerabilities"* ]]; then
             echo "No vulnerabilities found."
           fi
+      
       
 
       - name: Comment on PR with Issues
