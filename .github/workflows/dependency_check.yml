@@ -26,15 +26,14 @@ jobs:
 
       - name: Comment on PR with Issues
         run: |
-          const fs = require('fs');
-          const issues = fs.readFileSync('issues/issues-file.txt', 'utf-8');
+          issues=$(cat issues/issues-file.txt)
           if echo "$issues" | grep -q "found 0 vulnerabilities"; then
             echo "No vulnerabilities found."
           else
             echo "Dependency issues found. Rejecting PR."
             exit 1
           fi
-        shell: bash
+      
 
       - name: Set results as environment variable
         run: |
