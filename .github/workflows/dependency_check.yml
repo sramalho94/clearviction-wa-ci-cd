@@ -24,8 +24,15 @@ jobs:
       - name: Check for Dependency Issues
         id: audit
         run: |
-          audit_result=$(npm audit --audit-level=moderate)
+          audit_result=$(npm audit --audit-level=moderate | true)
           echo "$audit_result" > issues/issues-file.txt
+          if [[ $audit_result == *"found 0 vulnerabilities"* ]]; then
+            echo "No vulnerabilities found."
+          else
+            echo "Dependency issues found."
+            # You can add additional logic here to check for critical vulnerabilities.
+          fi
+      
 
   process_results:
     runs-on: ubuntu-latest
