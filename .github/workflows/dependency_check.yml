@@ -42,7 +42,7 @@ jobs:
           
             # Comment on the PR using GitHub REST API with properly formatted JSON
             curl -X POST \
-              -H "Authorization: Bearer ${{ secrets.ACCESS_TOKEN }}" \
+              -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
               -H "Accept: application/vnd.github.v3+json" \
               "https://api.github.com/repos/sramalho94/portfolio_2023/issues/${PR_NUMBER}/comments" \
               -d "{\"body\":$(echo "$COMMENT_BODY" | jq -s -R -r @json)}"
