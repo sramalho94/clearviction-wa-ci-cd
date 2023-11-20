@@ -3,7 +3,7 @@ name: Dependency Check
 on:
   pull_request:
     branches:
-      - dev
+      - staging
 
 jobs:
   check_dependencies:
