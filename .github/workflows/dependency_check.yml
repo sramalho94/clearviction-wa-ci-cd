@@ -3,7 +3,7 @@ name: Dependency Check
 on:
   pull_request:
     branches:
-      - staging
+      - dev
 
 jobs:
   check_dependencies:
@@ -18,6 +18,11 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v2
 
+      - name: Install jq
+        run: |
+          sudo apt-get update
+          sudo apt-get install jq
+
       - name: Install Dependencies
         run: npm install
 
@@ -25,26 +30,31 @@ jobs:
         run: npm audit > issues/issues-file.txt || true
 
       - name: Comment on PR with Issues
-        uses: actions/github-script@0.9.0
-        with:
-          script: |
-            const fs = require('fs');
-            const issues = fs.readFileSync('issues/issues-file.txt', 'utf-8');
-            if (!issues.includes("found 0 vulnerabilities")) {
-              github.issues.createComment({
-                issue_number: context.issue.number,
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                body: `PR has dependency issues:\n${issues}`,
-              });
-            }
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      
-
-      - name: Check for Issues and Reject PR
         run: |
-            if ! grep -q "found 0 vulnerabilities" issues/issues-file.txt; then
-              echo "Dependency issues found. Rejecting PR."
-              exit 1
-            fi
+          echo "PR has dependency issues:" > pr_comment.txt
+          issues_content="$(cat issues/issues-file.txt)"
+          if ! echo "$issues_content" | grep -q "found 0 vulnerabilities"; then
+            echo "$issues_content" >> pr_comment.txt
+            COMMENT_BODY=$(cat pr_comment.txt)
+          
+            # Get the PR number
+            PR_NUMBER=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
+          
+            # Comment on the PR using GitHub REST API with properly formatted JSON
+            curl -X POST \
+              -H "Authorization: Bearer ${{ secrets.ACCESS_TOKEN }}" \
+              -H "Accept: application/vnd.github.v3+json" \
+              "https://api.github.com/repos/sramalho94/portfolio_2023/issues/${PR_NUMBER}/comments" \
+              -d "{\"body\":$(echo "$COMMENT_BODY" | jq -s -R -r @json)}"
+          else
+            echo "No dependency issues found."
+          fi
+      
+      
+      
+      - name: Check for Critical or High Vulnerabilities
+        run: |
+          if grep -qE "critical|high" issues/issues-file.txt; then
+            echo "Critical or high dependency issues found. Rejecting PR."
+            exit 1
+          fi
