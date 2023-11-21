@@ -11,12 +11,12 @@ jobs:
 
     steps:
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
-          node-version: 14
+          node-version: 18
 
       - name: Checkout Code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Install jq
         run: |
@@ -52,7 +52,7 @@ jobs:
           else
             echo "No dependency issues found."
           fi
-             
+              
       - name: Check for Critical or High Vulnerabilities
         run: |
           if grep -qE "critical|high" issues/issues-file.txt; then
