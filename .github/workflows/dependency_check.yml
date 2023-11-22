@@ -27,12 +27,12 @@ jobs:
         run: npm install
 
       - name: Check for Dependency Issues
-        run: npm audit > issues/issues-file.txt || true
+        run: npm audit > .github/workflows/issues/issues-file.txt || true
 
       - name: Comment on PR with Issues
         run: |
           echo "PR has dependency issues:" > pr_comment.txt
-          issues_content="$(cat issues/issues-file.txt)"
+          issues_content="$(cat .github/workflows/issues/issues-file.txt)"
           if ! echo "$issues_content" | grep -q "found 0 vulnerabilities"; then
             echo "$issues_content" >> pr_comment.txt
             COMMENT_BODY=$(cat pr_comment.txt)
@@ -55,7 +55,7 @@ jobs:
               
       - name: Check for Critical or High Vulnerabilities
         run: |
-          if grep -qE "critical|high" issues/issues-file.txt; then
+          if grep -qE "critical|high" .github/workflows/issues/issues-file.txt; then
             echo "Critical or high dependency issues found. Rejecting PR."
             exit 1
           fi
