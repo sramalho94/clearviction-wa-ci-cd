@@ -55,7 +55,7 @@ jobs:
               
       - name: Check for Critical or High Vulnerabilities
         run: |
-          if grep -qE "critical|high" issues/issues-file.txt; then
+          if grep -qE "critical|high" .github/workflows/issues/issues-file.txt; then
             echo "Critical or high dependency issues found. Rejecting PR."
             exit 1
           fi
