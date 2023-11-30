@@ -5,11 +5,10 @@ import {
   ListItem,
   Typography,
 } from '@mui/material';
+import ImageContainer from '@src/components/layout/ImageContainer.tsx';
+import SectionContainer from '@src/components/layout/SectionContainer.tsx';
+import Theme from '@src/styles/themes/theme.tsx';
 import React from 'react';
-
-import Theme from '../../styles/themes/theme.tsx';
-import ImageContainer from '../layout/ImageContainer.tsx';
-import SectionContainer from '../layout/SectionContainer.tsx';
 
 type Answers = {
     [key: string]: string;
