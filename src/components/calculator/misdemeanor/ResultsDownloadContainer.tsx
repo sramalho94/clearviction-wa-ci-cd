@@ -1,9 +1,8 @@
 import { Button } from '@mui/material';
+import { SharedCalcProps } from '@src/utils/calculator.props.ts';
 import html2canvas from 'html2canvas';
 import { jsPDF } from 'jspdf';
 import React from 'react';
-
-import { SharedCalcProps } from '../../../utils/calculator.props.ts';
 
 export default function ResultsDownloadContainer({ handleCloseResults, setShowResults }: {
     handleCloseResults: SharedCalcProps['handleCloseResults'],

@@ -1,9 +1,8 @@
 import { Button, Container, SvgIcon } from '@mui/material';
+import CalcStepper from '@src/components/functional/CalcStepper.tsx';
+import { SharedCalcProps, StaticCalcProps } from '@src/utils/calculator.props.ts';
 import { useRouter } from 'next/router';
 import React from 'react';
-
-import { SharedCalcProps, StaticCalcProps } from '../../../utils/calculator.props.ts';
-import CalcStepper from '../../functional/CalcStepper.tsx';
 
 export default function CalcHeader({ page, isFirstPage }:
     { page: StaticCalcProps['page'],

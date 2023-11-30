@@ -1,9 +1,8 @@
 import HistoryIcon from '@mui/icons-material/History';
 import IosShareIcon from '@mui/icons-material/IosShare';
 import { Box, Button, Link } from '@mui/material';
+import { SharedCalcProps, StaticCalcProps } from '@src/utils/calculator.props.ts';
 import React from 'react';
-
-import { SharedCalcProps, StaticCalcProps } from '../../../utils/calculator.props.ts';
 
 function CheckAnotherConviction({ calculatorConfig }: {
     calculatorConfig: StaticCalcProps['calculatorConfig']

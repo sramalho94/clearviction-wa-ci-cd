@@ -4,11 +4,10 @@ import {
   Dialog, DialogActions, DialogContent, DialogTitle,
 } from '@mui/material';
 import { PortableText } from '@portabletext/react';
+import ShareButtons from '@src/components/helper/ShareButtons.tsx';
+import { SharedCalcProps, StaticCalcProps } from '@src/utils/calculator.props.ts';
+import { portableTextComponent } from '@src/utils/portableTextComponents.tsx';
 import React, { useState } from 'react';
-
-import { SharedCalcProps, StaticCalcProps } from '../../../utils/calculator.props.ts';
-import { portableTextComponent } from '../../../utils/portableTextComponents.tsx';
-import ShareButtons from '../../helper/ShareButtons.tsx';
 
 export default function NotSurePopup({ calculatorConfig, openNotSurePopup, setOpenNotSurePopup }: {
     calculatorConfig: StaticCalcProps['calculatorConfig'],

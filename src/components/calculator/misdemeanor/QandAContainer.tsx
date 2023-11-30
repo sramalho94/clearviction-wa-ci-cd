@@ -2,10 +2,9 @@ import {
   Box, Button, Container, Stack,
 } from '@mui/material';
 import { PortableText } from '@portabletext/react';
+import { SharedCalcProps, StaticCalcProps } from '@src/utils/calculator.props.ts';
+import { portableTextComponent } from '@src/utils/portableTextComponents.tsx';
 import React from 'react';
-
-import { SharedCalcProps, StaticCalcProps } from '../../../utils/calculator.props.ts';
-import { portableTextComponent } from '../../../utils/portableTextComponents.tsx';
 
 export default function QandAContainer({
   page, calculatorConfig, addToResponses, setOpenNotSurePopup,
