@@ -3,10 +3,9 @@ import Box from '@mui/material/Box';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Stepper from '@mui/material/Stepper';
+import theme from '@src/styles/themes/theme.tsx';
 import * as React from 'react';
 import { useEffect } from 'react';
-
-import theme from '../../styles/themes/theme.tsx';
 
 const steps = [
   'your offense',

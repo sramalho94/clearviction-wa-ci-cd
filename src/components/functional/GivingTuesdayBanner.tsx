@@ -1,10 +1,9 @@
 import {
   Box, Button, Link, ThemeProvider,
 } from '@mui/material';
+import theme from '@src/styles/themes/theme.tsx';
 import React, { useState } from 'react';
 import { IoIosArrowForward } from 'react-icons/io';
-
-import theme from '../../styles/themes/theme.tsx';
 
 function GivingTuesdayBanner() {
   const [isBannerVisible, setIsBannerVisible] = useState(true);
