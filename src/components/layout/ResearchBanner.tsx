@@ -1,10 +1,9 @@
 import {
   Box, Button, Grid, SxProps, Theme, Typography,
 } from '@mui/material';
+import ImageContainer from '@src/components/layout/ImageContainer.tsx';
+import SectionContainer from '@src/components/layout/SectionContainer.tsx';
 import React from 'react';
-
-import ImageContainer from './ImageContainer.tsx';
-import SectionContainer from './SectionContainer.tsx';
 
 const researchBannerStyles: SxProps = {
   backgroundColor: 'primary.main',

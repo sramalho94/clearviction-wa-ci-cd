@@ -15,13 +15,12 @@ import {
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import GivingTuesdayBanner from '@src/components/functional/GivingTuesdayBanner.tsx';
+import SkipLink from '@src/components/helper/SkipLink.tsx';
+import NavigationLogo from '@src/components/layout/NavigationLogo.tsx';
+import navItems from '@src/content/navItems.ts';
 import Link from 'next/link';
 import React, { useState } from 'react';
-
-import navItems from '../../content/navItems.ts';
-import GivingTuesdayBanner from '../functional/GivingTuesdayBanner.tsx';
-import SkipLink from '../helper/SkipLink.tsx';
-import NavigationLogo from './NavigationLogo.tsx';
 
 export default function Header() {
   const theme = useTheme();

@@ -7,12 +7,11 @@ import {
   Typography,
   TypographyProps,
 } from '@mui/material';
+import ImageContainer from '@src/components/layout/ImageContainer.tsx';
+import SectionContainer from '@src/components/layout/SectionContainer.tsx';
+import { AriaLabels } from '@src/content/content.types.ts';
 import MuiMarkdown from 'mui-markdown';
 import React from 'react';
-
-import { AriaLabels } from '../../content/content.types.ts';
-import ImageContainer from './ImageContainer.tsx';
-import SectionContainer from './SectionContainer.tsx';
 
 interface HeroBannerProps {
   header: string;

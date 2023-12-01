@@ -1,9 +1,8 @@
 import {
   Button, Paper, PaperProps, Stack, Typography,
 } from '@mui/material';
+import { AriaLabels } from '@src/content/content.types.ts';
 import React from 'react';
-
-import { AriaLabels } from '../../content/content.types.ts';
 
 interface PaperSectionProps extends PaperProps {
   title?: string;

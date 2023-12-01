@@ -11,10 +11,9 @@ import {
   Typography,
   TypographyProps,
 } from '@mui/material';
+import ImageContainer from '@src/components/layout/ImageContainer.tsx';
+import { footerContent, footerNavItems } from '@src/content/footer.ts';
 import React from 'react';
-
-import { footerContent, footerNavItems } from '../../content/footer.ts';
-import ImageContainer from './ImageContainer.tsx';
 
 type FooterSectionProps = {
   title: string;

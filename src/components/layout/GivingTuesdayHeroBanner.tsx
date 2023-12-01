@@ -7,12 +7,11 @@ import {
   Typography,
   TypographyProps,
 } from '@mui/material';
+import GivingTuesdayDonationForm from '@src/components/helper/GivingTuesdayDonationForm.tsx';
+import ImageContainer from '@src/components/layout/ImageContainer.tsx';
+import SectionContainer from '@src/components/layout/SectionContainer.tsx';
 import MuiMarkdown from 'mui-markdown';
 import React from 'react';
-
-import GivingTuesdayDonationForm from '../helper/GivingTuesdayDonationForm.tsx';
-import ImageContainer from './ImageContainer.tsx';
-import SectionContainer from './SectionContainer.tsx';
 
 interface HeroBannerProps {
   header: string;

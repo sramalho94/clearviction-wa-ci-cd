@@ -1,10 +1,9 @@
 import {
   Box, Grid, GridProps, Typography,
 } from '@mui/material';
+import ImageContainer from '@src/components/layout/ImageContainer.tsx';
 import MuiMarkdown from 'mui-markdown';
 import React from 'react';
-
-import ImageContainer from './ImageContainer.tsx';
 
 interface GridItemCardProps extends GridProps {
   title?: string;
