@@ -1,6 +1,6 @@
 import {
   AirtableEmbed, Button, Fact, Header, MetaPageHead,
-} from './content.types.ts';
+} from '@src/content/content.types.ts';
 
 interface AboutContent {
   meta: MetaPageHead;

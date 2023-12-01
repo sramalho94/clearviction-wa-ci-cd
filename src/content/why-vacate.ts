@@ -1,6 +1,6 @@
 import {
   Button, Card, Header, MetaPageHead,
-} from './content.types.ts';
+} from '@src/content/content.types.ts';
 
 interface WhyVacateContent {
   meta: MetaPageHead;

@@ -1,5 +1,5 @@
-import { NavItem } from './content.types.ts';
-import navItems from './navItems.ts';
+import { NavItem } from '@src/content/content.types.ts';
+import navItems from '@src/content/navItems.ts';
 
 export const footerContent = {
   mission:

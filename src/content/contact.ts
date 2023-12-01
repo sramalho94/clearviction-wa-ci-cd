@@ -1,4 +1,4 @@
-import { ContactType, FormInfo, MetaPageHead } from './content.types.ts';
+import { ContactType, FormInfo, MetaPageHead } from '@src/content/content.types.ts';
 
 interface ContactContent {
     meta: MetaPageHead;

@@ -1,6 +1,6 @@
 import {
   Button, FAQ, GridSection, Header, MetaPageHead,
-} from './content.types.ts';
+} from '@src/content/content.types.ts';
 
 interface DonateContent {
   meta: MetaPageHead

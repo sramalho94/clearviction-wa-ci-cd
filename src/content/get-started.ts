@@ -1,7 +1,7 @@
 import {
   Button,
   Fact, GetStartedStep, Header, Info, MetaPageHead, Reason,
-} from './content.types.ts';
+} from '@src/content/content.types.ts';
 
 interface GetStartedContent {
   meta: MetaPageHead;

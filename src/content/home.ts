@@ -1,6 +1,6 @@
 import {
   FAQ, GridSection, Header, MetaPageHead, SectionNav,
-} from './content.types.ts';
+} from '@src/content/content.types.ts';
 
 interface HomeContent {
   meta: MetaPageHead;

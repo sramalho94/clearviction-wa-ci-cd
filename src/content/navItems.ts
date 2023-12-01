@@ -1,4 +1,4 @@
-import { NavItem } from './content.types.ts';
+import { NavItem } from '@src/content/content.types.ts';
 
 const navItems: NavItem[] = [
   {
