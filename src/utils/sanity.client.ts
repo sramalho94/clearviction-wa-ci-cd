@@ -1,6 +1,6 @@
+import { apiVersion, dataset, projectId } from '@src/utils/sanity.api.ts';
 import { createClient } from 'next-sanity';
 
-import { apiVersion, dataset, projectId } from './sanity.api.ts';
 import {
   calculatorConfigQuery,
   calculatorPagePaths,
