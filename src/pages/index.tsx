@@ -3,21 +3,20 @@ import {
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import useScroll from '@src/components/functional/CustomScroll.tsx';
+import externalLinks from '@src/components/functional/ExternalLinks.tsx';
+import MailchimpForm from '@src/components/functional/MailchimpForm.tsx';
+import IndividualPageHead from '@src/components/helper/IndividualPageHead.tsx';
+import AccordionBuilder from '@src/components/layout/AccordionBuilder.tsx';
+import GridItemCard from '@src/components/layout/GridItem.tsx';
+import HeroBanner from '@src/components/layout/HeroBanner.tsx';
+import ImageContainer from '@src/components/layout/ImageContainer.tsx';
+import PaperSection from '@src/components/layout/PaperSection.tsx';
+import ResearchBanner from '@src/components/layout/ResearchBanner.tsx';
+import SectionContainer from '@src/components/layout/SectionContainer.tsx';
+import content from '@src/content/home.ts';
 import MuiMarkdown from 'mui-markdown';
 import React from 'react';
-
-import useScroll from '../components/functional/CustomScroll.tsx';
-import externalLinks from '../components/functional/ExternalLinks.tsx';
-import MailchimpForm from '../components/functional/MailchimpForm.tsx';
-import IndividualPageHead from '../components/helper/IndividualPageHead.tsx';
-import AccordionBuilder from '../components/layout/AccordionBuilder.tsx';
-import GridItemCard from '../components/layout/GridItem.tsx';
-import HeroBanner from '../components/layout/HeroBanner.tsx';
-import ImageContainer from '../components/layout/ImageContainer.tsx';
-import PaperSection from '../components/layout/PaperSection.tsx';
-import ResearchBanner from '../components/layout/ResearchBanner.tsx';
-import SectionContainer from '../components/layout/SectionContainer.tsx';
-import content from '../content/home.ts';
 
 export default function Home() {
   const theme = useTheme();

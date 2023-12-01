@@ -4,19 +4,18 @@ import {
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import useScroll from '@src/components/functional/CustomScroll.tsx';
+import externalLinks from '@src/components/functional/ExternalLinks.tsx';
+import IndividualPageHead from '@src/components/helper/IndividualPageHead.tsx';
+import FactCard from '@src/components/layout/FactCard.tsx';
+import HeroBanner from '@src/components/layout/HeroBanner.tsx';
+import ImageContainer from '@src/components/layout/ImageContainer.tsx';
+import PaperSection from '@src/components/layout/PaperSection.tsx';
+import SectionContainer from '@src/components/layout/SectionContainer.tsx';
+import content from '@src/content/about.ts';
 import MuiMarkdown from 'mui-markdown';
 import Link from 'next/link';
 import React from 'react';
-
-import useScroll from '../components/functional/CustomScroll.tsx';
-import externalLinks from '../components/functional/ExternalLinks.tsx';
-import IndividualPageHead from '../components/helper/IndividualPageHead.tsx';
-import FactCard from '../components/layout/FactCard.tsx';
-import HeroBanner from '../components/layout/HeroBanner.tsx';
-import ImageContainer from '../components/layout/ImageContainer.tsx';
-import PaperSection from '../components/layout/PaperSection.tsx';
-import SectionContainer from '../components/layout/SectionContainer.tsx';
-import content from '../content/about.ts';
 
 export default function AboutPage() {
   const theme = useTheme();

@@ -9,17 +9,16 @@ import {
   Grid,
   Typography,
 } from '@mui/material';
+import IndividualPageHead from '@src/components/helper/IndividualPageHead.tsx';
+import ShareButtons from '@src/components/helper/ShareButtons.tsx';
+import AccordionBuilder from '@src/components/layout/AccordionBuilder.tsx';
+import FactCard from '@src/components/layout/FactCard.tsx';
+import HeroBanner from '@src/components/layout/HeroBanner.tsx';
+import ImageContainer from '@src/components/layout/ImageContainer.tsx';
+import PaperSection from '@src/components/layout/PaperSection.tsx';
+import SectionContainer from '@src/components/layout/SectionContainer.tsx';
+import content from '@src/content/get-involved.ts';
 import React from 'react';
-
-import IndividualPageHead from '../components/helper/IndividualPageHead.tsx';
-import ShareButtons from '../components/helper/ShareButtons.tsx';
-import AccordionBuilder from '../components/layout/AccordionBuilder.tsx';
-import FactCard from '../components/layout/FactCard.tsx';
-import HeroBanner from '../components/layout/HeroBanner.tsx';
-import ImageContainer from '../components/layout/ImageContainer.tsx';
-import PaperSection from '../components/layout/PaperSection.tsx';
-import SectionContainer from '../components/layout/SectionContainer.tsx';
-import content from '../content/get-involved.ts';
 
 function Volunteer() {
   return (

@@ -3,24 +3,23 @@ import {
   Container,
   Typography,
 } from '@mui/material';
-import { GetStaticPaths, GetStaticProps } from 'next';
-import React, { useEffect, useRef, useState } from 'react';
-
-import CalcHeader from '../../components/calculator/misdemeanor/CalcHeader.tsx';
-import FinalPageLinksContainer, { ErrorReportContainer, ShareCalcContainer } from '../../components/calculator/misdemeanor/CTAContainers.tsx';
-import NotSurePopup, { ShareCalculatorPopup } from '../../components/calculator/misdemeanor/PopupContainers.tsx';
-import QandAContainer from '../../components/calculator/misdemeanor/QandAContainer.tsx';
-import ResultsDownloadContainer from '../../components/calculator/misdemeanor/ResultsDownloadContainer.tsx';
-import externalLinks from '../../components/functional/ExternalLinks.tsx';
-import MailchimpForm from '../../components/functional/MailchimpForm.tsx';
-import IndividualPageHead from '../../components/helper/IndividualPageHead.tsx';
-import Results from '../../components/helper/Results.tsx';
-import { StaticCalcProps } from '../../utils/calculator.props.ts';
+import CalcHeader from '@src/components/calculator/misdemeanor/CalcHeader.tsx';
+import FinalPageLinksContainer, { ErrorReportContainer, ShareCalcContainer } from '@src/components/calculator/misdemeanor/CTAContainers.tsx';
+import NotSurePopup, { ShareCalculatorPopup } from '@src/components/calculator/misdemeanor/PopupContainers.tsx';
+import QandAContainer from '@src/components/calculator/misdemeanor/QandAContainer.tsx';
+import ResultsDownloadContainer from '@src/components/calculator/misdemeanor/ResultsDownloadContainer.tsx';
+import externalLinks from '@src/components/functional/ExternalLinks.tsx';
+import MailchimpForm from '@src/components/functional/MailchimpForm.tsx';
+import IndividualPageHead from '@src/components/helper/IndividualPageHead.tsx';
+import Results from '@src/components/helper/Results.tsx';
+import { StaticCalcProps } from '@src/utils/calculator.props.ts';
 import {
   getCalculatorConfig,
   getCalculatorPageBySlug,
   getCalculatorPagePaths,
-} from '../../utils/sanity.client.ts';
+} from '@src/utils/sanity.client.ts';
+import { GetStaticPaths, GetStaticProps } from 'next';
+import React, { useEffect, useRef, useState } from 'react';
 
 export default function CalculatorSlugRoute({ page, calculatorConfig }: StaticCalcProps) {
   // all state and functions here are shared between multiple secondary components

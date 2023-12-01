@@ -1,17 +1,16 @@
 import {
   Button, Container, Grid, Typography,
 } from '@mui/material';
+import externalLinks from '@src/components/functional/ExternalLinks.tsx';
+import IndividualPageHead from '@src/components/helper/IndividualPageHead.tsx';
+import ShareButtons from '@src/components/helper/ShareButtons.tsx';
+import AccordionBuilder from '@src/components/layout/AccordionBuilder.tsx';
+import GivingTuesdayHeroBanner from '@src/components/layout/GivingTuesdayHeroBanner.tsx';
+import GridItemCard from '@src/components/layout/GridItem.tsx';
+import PaperSection from '@src/components/layout/PaperSection.tsx';
+import SectionContainer from '@src/components/layout/SectionContainer.tsx';
+import content from '@src/content/donate.ts';
 import React from 'react';
-
-import externalLinks from '../components/functional/ExternalLinks.tsx';
-import IndividualPageHead from '../components/helper/IndividualPageHead.tsx';
-import ShareButtons from '../components/helper/ShareButtons.tsx';
-import AccordionBuilder from '../components/layout/AccordionBuilder.tsx';
-import GivingTuesdayHeroBanner from '../components/layout/GivingTuesdayHeroBanner.tsx';
-import GridItemCard from '../components/layout/GridItem.tsx';
-import PaperSection from '../components/layout/PaperSection.tsx';
-import SectionContainer from '../components/layout/SectionContainer.tsx';
-import content from '../content/donate.ts';
 
 export default function DonatePage() {
   externalLinks();

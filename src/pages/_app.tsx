@@ -1,15 +1,14 @@
-import '../styles/global.css';
+import '@src/styles/global.css';
 
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import { CssBaseline, ThemeProvider } from '@mui/material';
+import InterceptSurveyForm from '@src/components/functional/InterceptSurveyForm.tsx';
+import Footer from '@src/components/layout/Footer.tsx';
+import Header from '@src/components/layout/Header.tsx';
+import theme from '@src/styles/themes/theme.tsx';
+import createEmotionCache from '@src/utils/createEmotionCache.ts';
 import Head from 'next/head';
 import React from 'react';
-
-import InterceptSurveyForm from '../components/functional/InterceptSurveyForm.tsx';
-import Footer from '../components/layout/Footer.tsx';
-import Header from '../components/layout/Header.tsx';
-import theme from '../styles/themes/theme.tsx';
-import createEmotionCache from '../utils/createEmotionCache.ts';
 
 const clientSideEmotionCache = createEmotionCache();
 
