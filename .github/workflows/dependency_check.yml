@@ -52,7 +52,6 @@ jobs:
           else
             echo "No dependency issues found."
           fi
-
       - name: Check for Critical or High Vulnerabilities
         run: |
           if grep -qE "critical|high" .github/workflows/issues/issues-file.txt; then
