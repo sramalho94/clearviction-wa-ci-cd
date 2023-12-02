@@ -22,7 +22,11 @@
     "noImplicitAny": true,
     "noImplicitThis": true,
     "strictNullChecks": true,
-    "allowImportingTsExtensions": true
+    "allowImportingTsExtensions": true,
+    "baseUrl": "./",
+    "paths": {
+      "@src/*": ["src/*"]
+    }
   },
   "include": [
     "next-env.d.ts",

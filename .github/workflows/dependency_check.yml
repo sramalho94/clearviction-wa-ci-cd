@@ -36,13 +36,13 @@ jobs:
           if ! echo "$issues_content" | grep -q "found 0 vulnerabilities"; then
             echo "$issues_content" >> pr_comment.txt
             COMMENT_BODY=$(cat pr_comment.txt)
-      
+
             # Get the PR number
             PR_NUMBER=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
-      
+
             # Debug: Print PR_NUMBER
             echo "PR_NUMBER: $PR_NUMBER"
-      
+
             # Comment on the PR using GitHub REST API with properly formatted JSON
             curl -X POST \
               -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
@@ -52,7 +52,6 @@ jobs:
           else
             echo "No dependency issues found."
           fi
-              
       - name: Check for Critical or High Vulnerabilities
         run: |
           if grep -qE "critical|high" .github/workflows/issues/issues-file.txt; then
